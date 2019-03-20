@@ -200,8 +200,17 @@
       
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-      {% block active%}     
-      {% endblock active %}
+      <li class="active"><a href="{%url 'index'%}"><i class="fas fa-home"></i>&ensp; Home</a></li>
+      <li class="dropdown ">
+        <a class="dropdown-toggle " data-toggle="dropdown" href="#">Visitor
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu ">
+          <li><a href="{%url 'visitor:register'%}">Add new</a></li>
+          <li><a href="{%url 'visitor:checkedin_list'%}">Checked In</a></li>
+          <li><a href="{%url 'visitor:list'%}">Checked Out</a></li>
+        </ul>
+      </li>        
+    </ul>
       
     <ul class="nav navbar-nav navbar-right">
       {% if user.is_authenticated %}
@@ -216,7 +225,7 @@
 </nav>
 <div class="row">
         <div class="col-lg-4"><a href=""> <img src="{% static 'card/images/logo-english.png' %}"></a></div>
-        <div class="col-lg-4"><a href=""><h2 style="font-family:cursive; color: #192150;">&nbsp Visitor's Identity Portal</h2></a></div>
+        <div class="col-lg-4"><a href="{%url 'index'%}"><h2 style="font-family:cursive; color: #192150;">&nbsp Visitor's Identity Portal</h2></a></div>
         <div class="col-lg-4"><a href=""><img src="{% static 'card/images/logo-hindi.png' %}"></a></div>
 </div>
 <hr/>
