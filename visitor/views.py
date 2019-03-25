@@ -28,7 +28,8 @@ def register(request):
 		purpose=request.POST['purpose']
 		dest=request.POST['dest']
 		pic=request.POST['pic']
-		obj=visitor_detail(name=name,name_2=name_2,address=address,id_no=id_no,id_type=id_type,mob=mob,email=email,veh=veh,purpose=purpose,dest=dest,pic=pic)
+		expected_out_time=request.POST['expected_out_time']
+		obj=visitor_detail(name=name,name_2=name_2,address=address,id_no=id_no,id_type=id_type,mob=mob,email=email,veh=veh,purpose=purpose,dest=dest,pic=pic,expected_out_time=expected_out_time)
 		obj.save()
 
 		subject, from_email, to = 'Visitor Details at ABV IIITM', 'surjeetsingh41097@gmail.com', email
@@ -77,11 +78,42 @@ def register(request):
 			<td>Check In Time: </td>
 			<td>"""+str(obj.time_in)+"""</td>
 		</tr>
+		<tr>
+			<td>Expected Out Time: </td>
+			<td>"""+str(obj.expected_out_time)+"""</td>
+		</tr>
 	</table>"""
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 		msg.attach_alternative(html_content, "text/html")
 		msg.send()
+
+		#call reminder mail function
+		# notify_user(obj.id)
+
 	return render(request,'visitor/new.html')
+
+#code for remind mails functionality
+# ----------------------------------------------------------------------------------------------------------
+# from background_task import background
+# from django.contrib.auth.models import User
+
+# @background(schedule=timezone.now())
+# def notify_user(user_id):
+# 	user = visitor_detail.objects.get(pk=user_id)
+# 	email=user.email
+# 	subject, from_email, to = 'Visitor Details at ABV IIITM', 'surjeetsingh41097@gmail.com', email
+# 	text_content = 'This is Visitor ID Card information.'
+# 	html_content ="Reminder mail.."
+# 	msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+# 	msg.attach_alternative(html_content, "text/html")
+# 	msg.send() 
+	# lookup user by id and send them a message
+	# user = visitor_detail.objects.get(pk=user_id)
+	# user.email_user('Here is a notification', 'You have been notified')
+
+# -------------------------------------------------------------------------------------------------------------
+
+
 
 @login_required
 def list_view(request):

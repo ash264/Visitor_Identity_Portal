@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
@@ -102,6 +103,16 @@
                     <label for="valid">Destination</label>
                     <input type="text" name="dest" class="form-control" id="datepicker" placeholder="Destination">
                 </div>
+                
+                <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <label for="valid">Expected Out Date</label>
+                        <input type='text' placeholder="Expected Out Date" class="form-control" id='datetimepicker4' />
+                    </div>
+                    
+                </div>
+                </div>
 
                 <div class="col-sm-12"  style="text-align: center;margin-top: 30px;">
                     <button type="submit" class="btn btn-primary" style="width: 50%;">Submit</button>
@@ -145,6 +156,10 @@
                     '<img src="'+data_uri+'" id="capture"/>' ;
             } );    
         }
+         $(function () {
+            $('#datetimepicker4').datetimepicker();
+            });
+                    
     </script>
 </body>
 </html>

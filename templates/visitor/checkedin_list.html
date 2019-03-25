@@ -2,15 +2,17 @@
 {%load static%}
 
 {%block content%}
+
 <form action="{%url 'visitor:checkedin_list'%}" method="POST">
 	{%csrf_token%}
 	<input type="text" name="name" placeholder="Name">
 	<input type="text" name="id_no" placeholder="ID Number">
 	<input type="text" name="mob_no" placeholder="Mobile Number">
-	<input type="datetime-local" name="time_in" value="2018-06-12T19:30">
-	<input type="datetime-local" name="time_out" value="2019-03-12T19:32">
+	<input type="datetime-local" name="time_in" value="2018-06-12 19:30">
+	<input type="datetime-local" name="time_out" value="2019-03-12 19:32">
 	<input type="submit"  value="submit">
 </form>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
@@ -75,7 +77,6 @@ table#mydata th {
         				<th>Check Out</th>
             </tr>
         </thead>
-        
         <tbody>
         {%for v in visitors%}
 					<tr>
@@ -83,7 +84,7 @@ table#mydata th {
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.id_type}}</a></td>
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.id_no}}</a></td>
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.mob}}</a></td>
-						<td><a href="{%url 'visitor:detail' v.id%}">{{v.time_in}}</a></td>
+            <td><a href="{%url 'visitor:detail' v.id%}">{{v.time_in}}</a></td>
 						<td><a href="{%url 'visitor:detail' v.id%}">Not yet check out</a></td>
 					</tr>
 				{%endfor%}
